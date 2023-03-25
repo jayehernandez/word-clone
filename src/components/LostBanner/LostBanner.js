@@ -1,9 +1,9 @@
 import React from 'react';
 import Banner from '../Banner';
 
-function LostBanner({ answer }) {
+function LostBanner({ answer, onRestart }) {
   return (
-    <Banner status="sad">
+    <Banner status="sad" onRestart={onRestart}>
       <p>
         Sorry, the correct answer is <strong>{answer}</strong>.
       </p>
