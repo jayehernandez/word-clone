@@ -8,6 +8,8 @@ import GuessInput from '../GuessInput';
 import GuessResults from '../GuessResults';
 import WonBanner from '../WonBanner';
 import LostBanner from '../LostBanner';
+import Keyboard from '../Keyboard';
+import { checkGuess } from '../../game-helpers';
 
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
@@ -17,6 +19,8 @@ function Game() {
   });
 
   console.log({ answer });
+
+  const checkedGuesses = guesses.map((guess) => checkGuess(guess, answer));
 
   function onNewGuess(guess) {
     const newGuesses = [...guesses, guess];
@@ -44,6 +48,7 @@ function Game() {
       {gameStatus === 'lost' && (
         <LostBanner answer={answer} onRestart={onRestart} />
       )}
+      <Keyboard checkedGuesses={checkedGuesses} />
     </>
   );
 }
